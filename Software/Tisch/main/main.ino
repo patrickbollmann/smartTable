@@ -6,6 +6,11 @@ CRGB leds[NUM_LEDS];
 int bit1 = 0;
 int bit2 = 0;
 int bit3 = 0;
+
+int r = 0;
+int g = 0;
+int b = 0;
+
 int grenzwert = 450;
 int geschwindigkeit = 160;
 
@@ -80,6 +85,9 @@ void loop() {
   }else if(programm == 11){
     leseIR();
     pong();
+  }else if(programm == 12){
+    leseIR();
+    paint();
   }else if(programm == 0){
     fill(CRGB::HotPink);
   }else if(programm == 1){
