@@ -88,6 +88,9 @@ void loop() {
   }else if(programm == 12){
     leseIR();
     paint();
+  }else if(programm == 12){
+    leseIR();
+    flaschendrehen();
   }else if(programm == 0){
     fill(CRGB::HotPink);
   }else if(programm == 1){
