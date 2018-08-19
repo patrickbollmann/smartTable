@@ -63,7 +63,10 @@ void receiveEvent(int howMany) {
   Serial.println(rec);         // print the integer
   if(rec >= 81){
     FastLED.setBrightness((rec-80)*25); // rec[81,90] -> rec-80 [1,10] setBrightness(x) x[0,255]
-  }else{
+  }else if(rec <10){
+    setRGB(rec); 
+  }
+  else{
     programm = rec;
   }
 }
@@ -90,29 +93,13 @@ void loop() {
   }else if(programm == 12){
     leseIR();
     paint();
-  }else if(programm == 12){
+  }else if(programm == 13){
     leseIR();
     flaschendrehen();
-  }else if(programm == 0){
-    fill(CRGB::HotPink);
-  }else if(programm == 1){
-    fill(CRGB::Purple);
-  }else if(programm == 2){
-    fill(CRGB::Blue);
-  }else if(programm == 3){
-    fill(CRGB::Cyan);
-  }else if(programm == 4){
-    fill(CRGB::Green);
-  }else if(programm == 5){
-    fill(CRGB::Lime);
-  }else if(programm == 6){
-    fill(CRGB::Yellow);
-  }else if(programm == 7){
-    fill(CRGB::Orange);
-  }else if(programm == 8){
-    fill(CRGB::Red);
-  }else if(programm == 9){
-    fill(CRGB::White);
+  }else if(programm == 14){
+    objectdetection();
+  }else if(programm == 15){
+    fill(CRGB( r, g, b));
   }
   FastLED.show();
 }
@@ -152,6 +139,41 @@ int XY( int x, int y) {
     i = (y * matrixBreite) + x;
   }
   return i;
+}
+
+void setRGB(int x){
+  switch(x){
+    case 0://deepPink
+      r = 255; g = 25; b = 140;
+      break;
+    case 1: // Violet
+      r = 102; g = 0; b = 204;
+      break;
+    case 2: // Blue
+      r = 0; g = 0; b = 255; 
+      break;
+    case 3: // cyan
+      r = 0; g = 255; b = 255;
+      break;
+    case 4: // green
+      r = 0; g = 255; b = 0;
+      break;
+    case 5: // guppie green
+      r = 25; g = 255; b = 102;
+      break;
+    case 6: // yellow
+      r = 255; g = 255; b = 0;
+      break;
+    case 7: // Orange
+      r = 255; g = 165; b = 0;
+      break;
+    case 8: // Red
+      r = 255; g = 0; b = 0;
+      break;
+    case 9: // White
+      r = 255; g = 255; b = 255;
+      break;
+  }
 }
 
 
