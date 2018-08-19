@@ -115,6 +115,8 @@ void loop(){
               sendPID(13,"Flaschendrehen");
             }else if (header.indexOf("GET /program/objekterkennung") >= 0) {
               sendPID(14,"Objekterkennung");
+            }else if (header.indexOf("GET /program/staticcolor") >= 0) {
+              sendPID(15,"Statische Farbe");
             }else if (header.indexOf("GET /off") >= 0) {
               sendPID(80,"Aus");
             }else if (header.indexOf("GET /helligkeit/10") >= 0) {
@@ -169,11 +171,11 @@ void loop(){
             //dropdown Farbauswahl
             client.println("<div class='dropdown'><button class='button'>Farbe</button><div class='dropdown-content'><a href=\'/farbe/pink\'>Pink</a><a href=\'/farbe/lila\'>Lila</a><a href=\'/farbe/blau\'>Blau</a><a href=\'/farbe/cyan\'>Cyan</a><a href=\'/farbe/gruen\'>Gruen</a><a href=\'/farbe/lime\'>Lime</a><a href=\'/farbe/gelb\'>Gelb</a><a href=\'/farbe/orange\'>Orange</a><a href=\'/farbe/rot\'>Rot</a><a href=\'/farbe/weiss\'>Weiss</a></div></div>");
             client.println("<p></p>");
-            client.println("<div class='dropdown'><button class='button'>Programme</button><div class='dropdown-content'><a href=\'/program/glediator\'>Glediator</a><a href=\'/program/pong\'>Pong</a><a href=\'/program/malen\'>Malen</a><a href=\'/program/flaschendrehen\'>Flaschendrehen</a><a href=\'/program/objekterkennung\'>Objeekterkennung</a></div></div>");
+            client.println("<div class='dropdown'><button class='button'>Programme</button><div class='dropdown-content'><a href=\'/program/glediator\'>Glediator</a><a href=\'/program/pong\'>Pong</a><a href=\'/program/malen\'>Malen</a><a href=\'/program/flaschendrehen\'>Flaschendrehen</a><a href=\'/program/objekterkennung\'>Objeekterkennung</a><a href=\'/program/staticcolor\'>Statische Farbe</a></div></div>");
             client.println("<p></p>");
             client.println("<div class='dropdown'><button class='button'>Helligkeit</button><div class='dropdown-content'><a href=\'/helligkeit/10\'>10%</a><a href=\'/helligkeit/20\'>20%</a><a href=\'/helligkeit/30\'>30%</a><a href=\'/helligkeit/40\'>40%</a><a href=\'/helligkeit/50\'>50%</a><a href=\'/helligkeit/60\'>60%</a><a href=\'/helligkeit/70\'>70%</a><a href=\'/helligkeit/80\'>80%</a><a href=\'/helligkeit/90\'>90%</a><a href=\'/helligkeit/100\'>100%</a></div></div>");
             client.println("<p></p>");
-            client.println("<p><a href=\"/off\"><button class=\"button\">Aus</button></a></p>");
+            client.println("<p><a href=\'/farbe/pink\'><button class=\"button\">Aus</button></a></p>");
             client.println("</body></html>");
             
             // The HTTP response ends with another blank line
