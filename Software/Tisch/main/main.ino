@@ -9,14 +9,14 @@ int bit3 = 0;
 
 int IRTimer[104];
 
-int r = 0;
+int r = 255;
 int g = 0;
 int b = 0;
 
 int grenzwert = 450;
 int geschwindigkeit = 160;
 
-int programm = 0;
+int programm = 15;
 
 int IRWert[104];
 //int IRPos = 0;
@@ -62,17 +62,20 @@ void receiveEvent(int howMany) {
   int rec = Wire.read();    // receive byte as an integer
   Serial.println(rec);         // print the integer
   if(rec >= 81){
+    Serial.println("change brightness");
     FastLED.setBrightness((rec-80)*25); // rec[81,90] -> rec-80 [1,10] setBrightness(x) x[0,255]
   }else if(rec <10){
     setRGB(rec); 
+    Serial.println("change color");
   }
   else{
     programm = rec;
+    Serial.println("change program");
   }
 }
 
 void setup() { 
-  Serial.begin(9600);
+  Serial.begin(500000);
   Wire.begin(8);                // join i2c bus with address #8
   Wire.onReceive(receiveEvent); // register event
   LEDS.addLeds<WS2812B, dataline>(leds, NUM_LEDS);
@@ -85,6 +88,7 @@ void setup() {
 
 
 void loop() {
+  Serial.println(programm);
   if(programm == 10){
     glediator();
   }else if(programm == 11){
@@ -102,6 +106,7 @@ void loop() {
     fill(CRGB( r, g, b));
   }
   FastLED.show();
+  delay(10);
 }
 
 
@@ -110,6 +115,7 @@ void loop() {
 void startAnimation() {
   for (int p = 0; p < NUM_LEDS; p++) {
     leds[p] = CRGB::Blue;
+    delay(10);
     FastLED.show();
   }
 }
