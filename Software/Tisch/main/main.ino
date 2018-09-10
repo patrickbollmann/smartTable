@@ -79,7 +79,7 @@ void setup() {
   konfiguriereMultiplexer();
   startAnimation();
   //maleTestKanten();
-  neustart();
+ // neustart();b
 }
 
 
@@ -175,6 +175,3 @@ void setRGB(int x){
       break;
   }
 }
-
-
-
